@@ -1,0 +1,80 @@
+/* Fish Animation Styles */
+.fish-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(59, 123, 170, 0.1) 0%, rgba(0, 0, 0, 0.2) 100%);
+  backdrop-filter: blur(10px);
+  z-index: -1;
+}
+
+.fish {
+  --bodyW: 2rem;
+  --o: 0.95;
+  --l: 100%;
+  --c: hsla(250deg, 50%, var(--l), var(--o, 0.6));
+  --size: 10rem;
+  position: relative;
+  width: var(--size);
+  height: var(--size);
+  transform-style: preserve-3d;
+  transform-origin: center;
+  z-index: 1;
+}
+
+.fish__body {
+  --l: 75%;
+  --c: hsla(250deg, 50%, var(--l), var(--o, 0.6));
+  position: absolute;
+  top: var(--bodyW);
+  left: 0;
+  width: var(--bodyW);
+  height: calc(3 * var(--bodyW));
+  background: var(--c);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform: translateZ(calc(var(--bodyW) / -2));
+}
+
+.fish__head {
+  --l: 85%;
+  --c: hsla(250deg, 50%, var(--l), var(--o, 0.6));
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--bodyW);
+  height: var(--bodyW);
+  background: var(--c);
+  clip-path: polygon(40% 0, 60% 0, 100% 100%, 0 100%);
+  transform: translateZ(calc(var(--bodyW) / 2));
+}
+
+.fish__tail {
+  --o: 0.9;
+  --l: 90%;
+  --c: hsla(250deg, 50%, var(--l), var(--o, 0.6));
+  width: var(--bodyW);
+  height: var(--bodyW);
+  background-color: var(--c);
+  position: absolute;
+  left: 0;
+  bottom: var(--bodyW);
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  animation: tail 1000ms infinite alternate;
+}
+
+@keyframes tail {
+  to {
+    transform: rotateX(45deg);
+  }
+}
+
+/* Responsive adjustments */
+@media (min-width: 1000px) {
+  .fish {
+    --size: 20rem;
+    --bodyW: 4rem;
+  }
+} 

@@ -1,0 +1,134 @@
+import { useState } from 'react';
+import Link from 'next/link';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
+import { FaShieldAlt, FaLock, FaCog } from 'react-icons/fa'; // Import icons
+
+export default function Edges() {
+  const [activeTab, setActiveTab] = useState('Responsibility');
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
+
+  const tabs = [
+    {
+      name: 'Responsibility',
+      icon: <FaShieldAlt className="w-6 h-6" />, // Icon for Responsibility
+      content: "AKARI's robust experience in the financial sphere sets us apart. As professionals in finance, we're well-versed in risk management and ready to bear responsibility.",
+      link: '/possibilities',
+      linkText: 'Learn our possibilities',
+    },
+    {
+      name: 'Security',
+      icon: <FaLock className="w-6 h-6" />, // Icon for Security
+      content: 'With our PCI DSS Lvl1 certified payment platform, we ensure 3Ds V2 secure and standard-compliant transactions.',
+      link: '/protection',
+      linkText: 'Learn our protection',
+    },
+    {
+      name: 'Flexibility',
+      icon: <FaCog className="w-6 h-6" />, // Icon for Flexibility
+      content: 'Offering bespoke e-commerce payment processing solutions, we can tailor our services to fit your unique business requirements.',
+      link: '/business-e-com',
+      linkText: 'Learn e-com solution',
+    },
+  ];
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.2 },
+    },
+  };
+
+  const leftVariants = {
+    hidden: { x: -100, opacity: 0 },
+    visible: { x: 0, opacity: 1, transition: { duration: 0.6, ease: 'easeOut' } },
+  };
+
+  const rightVariants = {
+    hidden: { x: 100, opacity: 0 },
+    visible: { x: 0, opacity: 1, transition: { duration: 0.6, ease: 'easeOut' } },
+  };
+
+  return (
+    <section className="py-16 bg-white" ref={ref}>
+      <motion.div
+        className="max-w-6xl mx-auto px-4"
+        variants={containerVariants}
+        initial="hidden"
+        animate={inView ? 'visible' : 'hidden'}
+      >
+        <motion.div variants={leftVariants} className="text-center mb-12">
+          <h2 className="text-4xl font-bold text-black">
+            Our <span className="text-[#3b7baa]">Competitive</span> Edges
+          </h2>
+        </motion.div>
+
+        <div className="flex flex-col md:flex-row gap-8">
+          <motion.div variants={leftVariants} className="md:w-1/3">
+            <div className="flex flex-col gap-4">
+              {tabs.map((tab) => (
+                <button
+                  key={tab.name}
+                  onClick={() => setActiveTab(tab.name)}
+                  className={`flex items-center gap-3 p-4 rounded-lg transition-all duration-300 ${
+                    activeTab === tab.name
+                      ? 'bg-[#3b7baa] text-white shadow-lg'
+                      : 'bg-white text-indigo-900 hover:bg-indigo-100'
+                  }`}
+                >
+                  <div
+                    className={`w-8 h-8 flex items-center justify-center transition-colors ${
+                      activeTab === tab.name ? 'text-white' : 'text-[#3b7baa]'
+                    }`}
+                  >
+                    {tab.icon}
+                  </div>
+                  <span className="font-semibold">{tab.name}</span>
+                </button>
+              ))}
+            </div>
+          </motion.div>
+
+          <motion.div variants={rightVariants} className="md:w-2/3">
+            <AnimatePresence mode="wait">
+              {tabs.map(
+                (tab) =>
+                  activeTab === tab.name && (
+                    <motion.div
+                      key={tab.name}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      transition={{ duration: 0.3 }}
+                      className="bg-white p-6 rounded-lg shadow-xl"
+                    >
+                      <div className="flex flex-col md:flex-row gap-6">
+                        <div className="w-full md:w-1/3 h-48 flex items-center justify-center">
+                          <div
+                            className="text-[#3b7baa] transform transition-transform hover:scale-110"
+                            style={{ fontSize: '4rem' }} // Larger icon for content section
+                          >
+                            {tab.icon}
+                          </div>
+                        </div>
+                        <div className="md:w-2/3">
+                          <p className="text-gray-700 mb-4">{tab.content}</p>
+                          <Link
+                            href={tab.link}
+                            className="inline-block px-6 py-2 bg-[#3b7baa] text-white rounded-full hover:bg-indigo-700 transition-colors"
+                          >
+                            {tab.linkText}
+                          </Link>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )
+              )}
+            </AnimatePresence>
+          </motion.div>
+        </div>
+      </motion.div>
+    </section>
+  );
+}
