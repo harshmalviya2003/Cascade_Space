@@ -118,7 +118,7 @@ export default function Header() {
               onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#3B7BAA')}
               onClick={() => setIsMenuOpen(false)}
             >
-              LET'S TALK
+              LET&apos;S TALK
             </Link>
             <div className="header_social_mobile_only">
               <div className="links">

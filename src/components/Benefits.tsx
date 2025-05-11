@@ -139,7 +139,7 @@ export default function Benefits() {
           <motion.div className="benefits_dropdown_faq_wrapper" variants={container}>
             <motion.div className="benefits_dropdown_heading" variants={slideLeft}>
               <p className="text-gray-700">
-                With AKARI's advanced payment technologies, rest assured of a reliable system for a stable and profitable business.
+                With AKARI&apos;s advanced payment technologies, rest assured of a reliable system for a stable and profitable business.
               </p>
             </motion.div>
             <motion.div className="benefits_all_dropdowns_wrapper" variants={container}>

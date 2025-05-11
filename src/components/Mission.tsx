@@ -24,7 +24,6 @@ import { BsStars, BsCpu, BsLightningCharge } from 'react-icons/bs';
 
 export default function PremiumProductShowcase() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const panelsRef = useRef<(HTMLDivElement | null)[]>([]);
   const particlesRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

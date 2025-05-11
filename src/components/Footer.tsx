@@ -20,7 +20,7 @@ export default function Footer() {
       <footer className="footer-section bg-gradient-to-b from-[#000000] to-[#0A0E22] text-white py-16">
         <div className="container mx-auto max-w-6xl px-4">
           <div className="flex flex-col items-center text-center">
-            <div className="text-xl font-semibold text-white mb-5 tracking-wider">LET'S GET STARTED</div>
+            <div className="text-xl font-semibold text-white mb-5 tracking-wider">LET&apos;S GET STARTED</div>
             <div className="mb-10">
               <div className="mb-5">
                 <h2 className="text-4xl md:text-5xl font-bold leading-tight">
