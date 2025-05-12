@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { useEffect } from "react";
 import Link from "next/link";
 import { gsap } from "gsap";
@@ -213,16 +214,6 @@ export default function Cards() {
             </div>
           </div>
         </div>
-        <div className="advantages_planet_1 notouch">
-          <video autoPlay loop muted playsInline style={{ width: "582px", height: "582px", objectFit: "cover" }}>
-            <source src="/videos/v.mp4" type="video/mp4" />
-          </video>
-        </div>
-        <div className="advantages_planet_2 notouch">
-          <video autoPlay loop muted playsInline style={{ width: "57px", height: "57px", objectFit: "cover" }}>
-            <source src="/planet2.mp4" type="video/mp4" />
-          </video>
-        </div>
         <div className="advantages_stars notouch">
           <video autoPlay loop muted playsInline style={{ width: "100%", height: "100%", objectFit: "cover" }}>
             <source src="/videos/v.mp4" type="video/mp4" />
@@ -239,15 +230,14 @@ export default function Cards() {
             <div className="about_logo_button_wrapper">
               <div className="about_logo_wrapper notouch">
                 <div className="about_logo">
-                  {/* <Image
-                    src="/images/1.webp"
+                  <Image
+                    src="/images/logo.png"
                     loading="lazy"
                     width={392}
                     height={392}
                     alt="Cascade Space Logo"
                     sizes="(max-width: 479px) 100vw, (max-width: 991px) 392px, 36vw"
-                  /> */}
-                  <h1>Your Logo Here</h1>
+                  /> 
                 </div>
                 <div className="about_logo_gradient"></div>
               </div>
