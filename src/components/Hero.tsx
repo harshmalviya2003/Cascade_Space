@@ -1,6 +1,5 @@
 "use client";
 import Link from "next/link";
-import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
@@ -14,7 +13,7 @@ export function Hero() {
   const buttonContainerRef = useRef<HTMLDivElement>(null);
   const particlesRef = useRef<HTMLDivElement>(null);
   const starsRef = useRef<HTMLDivElement>(null);
-  const [videoLoaded, setVideoLoaded] = useState(false); // Track video load state
+  const [ setVideoLoaded] = useState(false); // Track video load state
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -27,7 +26,6 @@ export function Hero() {
 
       // Handle video load
       videoRef.current.onloadeddata = () => {
-        setVideoLoaded(true);
         videoRef.current?.play().catch((error: Error) => {
           console.error("Video autoplay prevented:", error);
         });
@@ -36,7 +34,6 @@ export function Hero() {
       // Handle video load error
       videoRef.current.onerror = () => {
         console.error("Video failed to load: /videos/hero.mp4");
-        setVideoLoaded(false);
       };
     }
 
