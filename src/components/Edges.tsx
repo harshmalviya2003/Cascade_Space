@@ -1,17 +1,10 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
-import { useInView } from "react-intersection-observer";
 import { FaRocket, FaSatellite, FaUsers } from "react-icons/fa";
 
 export default function Edges() {
   const [activeTab, setActiveTab] = useState("Innovation");
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-    rootMargin: "-50px 0px",
-  });
 
   const tabs = [
     {
@@ -40,137 +33,77 @@ export default function Edges() {
     },
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        when: "beforeChildren",
-        staggerChildren: 0.15,
-      },
-    },
-  };
-
-  const leftVariants = {
-    hidden: { x: -50, opacity: 0 },
-    visible: {
-      x: 0,
-      opacity: 1,
-      transition: { type: "spring", stiffness: 100, damping: 10 },
-    },
-  };
-
-  const rightVariants = {
-    hidden: { x: 50, opacity: 0 },
-    visible: {
-      x: 0,
-      opacity: 1,
-      transition: { type: "spring", stiffness: 100, damping: 10 },
-    },
-  };
-
-  const tabContentVariants = {
-    hidden: { opacity: 0, y: 10 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.3, ease: "easeOut" },
-    },
-    exit: { opacity: 0, y: -10, transition: { duration: 0.2 } },
-  };
-
   return (
-    <section className="py-16 bg-white" ref={ref}>
-      <motion.div
-        className="max-w-6xl mx-auto px-4"
-        variants={containerVariants}
-        initial="hidden"
-        animate={inView ? "visible" : "hidden"}
-      >
-        <motion.div variants={leftVariants} className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-black">
-            Why <span className="text-[#3b7baa]">Choose</span> Cascade Space
+    <section className="py-16 bg-white">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Heading */}
+        <div className="text-center mb-12">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">
+            Why <span className="text-[#3B7BAA]">Choose</span> Cascade Space
           </h2>
-        </motion.div>
+        </div>
 
-        <div className="flex flex-col md:flex-row gap-8">
-          <motion.div variants={leftVariants} className="md:w-1/3">
-            <div className="flex flex-col gap-4">
+        {/* Tabbed Interface */}
+        <div className="flex flex-col md:flex-row gap-6 lg:gap-8">
+          {/* Tab Buttons */}
+          <div className="md:w-1/3 flex-shrink-0">
+            <div className="flex flex-col gap-3">
               {tabs.map((tab) => (
-                <motion.button
+                <button
                   key={tab.name}
                   onClick={() => setActiveTab(tab.name)}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
                   className={`flex items-center gap-3 p-4 rounded-lg transition-all duration-300 ${
                     activeTab === tab.name
-                      ? "bg-[#3b7baa] text-white shadow-lg"
-                      : "bg-white text-indigo-900 hover:bg-indigo-100"
+                      ? "bg-[#3B7BAA] text-white shadow-lg"
+                      : "bg-gray-100 text-gray-900 hover:bg-indigo-50"
                   }`}
                 >
                   <div
-                    className={`w-8 h-8 flex items-center justify-center transition-colors ${
-                      activeTab === tab.name ? "text-white" : "text-[#3b7baa]"
+                    className={`w-8 h-8 flex items-center justify-center ${
+                      activeTab === tab.name ? "text-white" : "text-[#3B7BAA]"
                     }`}
                   >
                     {tab.icon}
                   </div>
-                  <span className="font-semibold">{tab.name}</span>
-                </motion.button>
+                  <span className="font-semibold text-sm sm:text-base">{tab.name}</span>
+                </button>
               ))}
             </div>
-          </motion.div>
+          </div>
 
-          {/* Conditionally render right side only when inView is true */}
-          {inView && (
-            <motion.div
-              variants={rightVariants}
-              initial="hidden"
-              animate="visible"
-              className="md:w-2/3"
-            >
-              <AnimatePresence mode="wait">
-                {tabs.map(
-                  (tab) =>
-                    activeTab === tab.name && (
-                      <motion.div
-                        key={tab.name}
-                        variants={tabContentVariants}
-                        style={{ willChange: "transform, opacity" }}
-                        initial="hidden"
-                        animate="visible"
-                        exit="exit"
-                        className="bg-white p-6 rounded-lg shadow-xl h-full"
-                      >
-                        <div className="flex flex-col md:flex-row gap-6 h-full">
-                          <div className="w-full md:w-1/3 flex items-center justify-center">
-                            <motion.div
-                              initial={{ scale: 0.8 }}
-                              animate={{ scale: 1 }}
-                              transition={{ type: "spring", bounce: 0.5 }}
-                              className="text-[#3b7baa] text-6xl"
-                            >
-                              {tab.icon}
-                            </motion.div>
-                          </div>
-                          <div className="md:w-2/3 flex flex-col justify-between">
-                            <p className="text-gray-700 mb-4">{tab.content}</p>
-                            <Link
-                              href={tab.link}
-                              className="inline-block px-6 py-2 bg-[#3b7baa] text-white rounded-full hover:bg-indigo-700 transition-colors self-start"
-                            >
-                              {tab.linkText}
-                            </Link>
-                          </div>
+          {/* Tab Content */}
+          <div className="md:w-2/3">
+            {tabs.map(
+              (tab) =>
+                activeTab === tab.name && (
+                  <div
+                    key={tab.name}
+                    className="bg-white p-6 rounded-lg shadow-lg h-full"
+                  >
+                    <div className="flex flex-col sm:flex-row gap-6 h-full">
+                      {/* Icon */}
+                      <div className="w-full sm:w-1/3 flex items-center justify-center">
+                        <div className="text-[#3B7BAA] text-5xl sm:text-6xl">
+                          {tab.icon}
                         </div>
-                      </motion.div>
-                    )
-                )}
-              </AnimatePresence>
-            </motion.div>
-          )}
+                      </div>
+                      {/* Content and Link */}
+                      <div className="w-full sm:w-2/3 flex flex-col justify-between">
+                        <p className="text-gray-600 text-sm sm:text-base mb-4">{tab.content}</p>
+                        <Link
+                          href={tab.link}
+                          className="inline-block px-6 py-2 bg-[#3B7BAA] text-white rounded-full  duration-300 text-sm sm:text-base"
+                        >
+                          {tab.linkText}
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                )
+            )}
+          </div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

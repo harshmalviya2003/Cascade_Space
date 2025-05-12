@@ -10,9 +10,11 @@ export default function Home() {
     <div className="body">
       <Hero />
       <Mission />
-      <Edges />
+      
       <Cards />
+      
       <Benefits />
+      {/* <Edges /> */}
     </div>
   );
 }

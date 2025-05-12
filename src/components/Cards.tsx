@@ -238,6 +238,7 @@ export default function Cards() {
                     alt="Cascade Space Logo"
                     sizes="(max-width: 479px) 100vw, (max-width: 991px) 392px, 36vw"
                   /> 
+                  <h1>Your Logo Here</h1>
                 </div>
                 <div className="about_logo_gradient"></div>
               </div>
