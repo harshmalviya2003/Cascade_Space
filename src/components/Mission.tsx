@@ -26,22 +26,23 @@ export default function PremiumProductShowcase() {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    // Create cosmic particles
+    // Create cosmic particles (optimized for mobile)
     const createParticles = () => {
       if (!particlesRef.current) return;
 
       particlesRef.current.innerHTML = "";
-      const particleCount = 50;
+      // Reduced particle count for mobile performance
+      const particleCount = window.innerWidth < 640 ? 20 : 50;
 
       for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement("div");
         particle.className = "absolute rounded-full bg-[#3B7BAA]";
 
-        const size = Math.random() * 4 + 1;
+        const size = Math.random() * 3 + 1; // Slightly smaller particles
         const posX = Math.random() * 100;
         const posY = Math.random() * 100;
         const delay = Math.random() * 5;
-        const duration = Math.random() * 15 + 10;
+        const duration = Math.random() * 10 + 8; // Shorter duration for smoother mobile performance
 
         gsap.set(particle, {
           width: `${size}px`,
@@ -53,10 +54,10 @@ export default function PremiumProductShowcase() {
         });
 
         gsap.to(particle, {
-          opacity: Math.random() * 0.6 + 0.2,
+          opacity: Math.random() * 0.4 + 0.2, // Lower opacity for subtlety
           scale: 1,
-          x: (Math.random() - 0.5) * 200,
-          y: (Math.random() - 0.5) * 200,
+          x: (Math.random() - 0.5) * 100, // Reduced movement range
+          y: (Math.random() - 0.5) * 100,
           duration: duration,
           delay: delay,
           repeat: -1,
@@ -77,18 +78,18 @@ export default function PremiumProductShowcase() {
         trigger: containerRef.current,
         pin: true,
         scrub: 0.5,
-        end: "+=4000",
+        end: "+=3000", // Reduced end value for smoother mobile scrolling
         markers: false,
       },
     });
 
-    // Panel-specific animations
-    // RF Designer - Elastic bounce with glow
+    // Panel-specific animations (upward movement removed)
+    // RF Designer - Glow effect only
     gsap.to(".rf-box", {
-      y: -100,
-      duration: 2,
-      ease: "elastic.out(1, 0.5)",
       boxShadow: "0 0 30px rgba(59, 123, 170, 0.7)",
+      opacity: 1,
+      duration: 1.5,
+      ease: "power2.out",
       scrollTrigger: {
         trigger: ".rf-box",
         containerAnimation: scrollTween,
@@ -97,10 +98,10 @@ export default function PremiumProductShowcase() {
       },
     });
 
-    // Test Wizard - Color shift with parallax
+    // Test Wizard - Color shift only
     gsap.to(".test-box", {
-      y: -80,
       backgroundColor: "#3B7BAA",
+      opacity: 1,
       ease: "power2.inOut",
       scrollTrigger: {
         trigger: ".test-box",
@@ -111,7 +112,7 @@ export default function PremiumProductShowcase() {
       },
     });
 
-    // Design Your Own - 3D flip animation
+    // Design Your Own - 3D flip animation (unchanged)
     gsap.fromTo(
       ".design-box",
       { rotationY: 180, opacity: 0 },
@@ -128,9 +129,8 @@ export default function PremiumProductShowcase() {
       }
     );
 
-    // Cascade Portal - Text reveal with particles
+    // Cascade Portal - Text reveal without y-movement
     gsap.from(".cascade-text", {
-      y: 50,
       opacity: 0,
       duration: 1,
       stagger: 0.1,
@@ -144,8 +144,12 @@ export default function PremiumProductShowcase() {
     // Create particles on mount
     createParticles();
 
+    // Refresh ScrollTrigger on window resize for responsiveness
+    window.addEventListener("resize", () => ScrollTrigger.refresh());
+
     return () => {
       ScrollTrigger.getAll().forEach((t) => t.kill());
+      window.removeEventListener("resize", () => ScrollTrigger.refresh());
     };
   }, []);
 
@@ -157,17 +161,17 @@ export default function PremiumProductShowcase() {
       {/* Horizontal Scrolling Product Showcase */}
       <div ref={containerRef} className="relative h-screen w-[400%] flex z-10">
         {/* Cascade Portal Panel */}
-        <section className="panel w-full h-full md:mt-30 mt-60 flex items-center justify-center p-4 sm:p-8">
+        <section className="panel md:mt-20 mt-50 w-full h-full flex items-center justify-center p-4 sm:p-8">
           <div className="w-full max-w-4xl mx-auto text-center bg-gray-900/50 backdrop-blur-sm p-6 sm:p-12 rounded-2xl border border-[#3B7BAA]/20 shadow-2xl">
             <div className="flex justify-center mb-6">
               <div className="p-4 bg-[#3B7BAA]/20 rounded-full border border-[#3B7BAA]/50">
                 <GiSpaceship className="text-5xl text-[#3B7BAA] animate-pulse" />
               </div>
             </div>
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 text-white">
+            <h1 className="cascade-text text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-white">
               <span className="text-[#3B7BAA]">Cascade</span> Portal
             </h1>
-            <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8 sm:mb-10 leading-relaxed max-w-3xl mx-auto">
+            <p className="cascade-text text-base sm:text-lg md:text-xl text-gray-300 mb-8 sm:mb-10 leading-relaxed max-w-3xl mx-auto">
               Streamline spacecraft design for lunar and deep space missions with validated tools, seamless{" "}
               <span className="text-[#3B7BAA]">Cascade Network</span> integration, and automated test plans—all in one platform.
             </p>
@@ -195,7 +199,7 @@ export default function PremiumProductShowcase() {
         </section>
 
         {/* RF Designer Panel */}
-        <section className="panel w-full h-full md:mt-0 mt-40 flex items-center justify-center p-4 sm:p-8">
+        <section className="panel md:mt-0 mt-30 w-full h-full flex items-center justify-center p-4 sm:p-8">
           <div className="rf-box w-full max-w-4xl mx-auto text-center bg-gray-900/50 backdrop-blur-sm p-6 sm:p-12 rounded-2xl border border-[#3B7BAA]/20 shadow-2xl">
             <div className="flex justify-center mb-6">
               <div className="p-4 bg-[#3B7BAA]/20 rounded-full border border-[#3B7BAA]/50">
@@ -204,7 +208,7 @@ export default function PremiumProductShowcase() {
             </div>
             <div className="text-[#3B7BAA] text-sm uppercase tracking-widest mb-4">RF System Design</div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">RF Designer</h2>
-            <p className="text-base pt-4 pb-4 sm:text-lg text-gray-300 mb-8 leading-relaxed max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg text-gray-300 mb-8 leading-relaxed max-w-2xl mx-auto">
               Design spacecraft RF systems optimized for high-latency, long-range deep space communications using commercially available components and link margin tools.
             </p>
             <div className="flex justify-center mb-8 sm:mb-10">
@@ -237,8 +241,8 @@ export default function PremiumProductShowcase() {
         </section>
 
         {/* Test Wizard Panel */}
-        <section className="panel w-full md:mt-0 mt-40 h-full flex items-center justify-center p-4 sm:p-8">
-          <div className="test-box w-full max-w-4xl mx-auto text-center bg-gray-900/50 backdrop-blur-sm p-6 sm:p-12 rounded-2xl border border-[#3B7BAA]/20 shadow-2xl">
+        <section className="panel md:mt-0 mt-30 w-full h-full flex items-center justify-center p-4 sm:p-8">
+        <div className="rf-box w-full max-w-4xl mx-auto text-center bg-gray-900/50 backdrop-blur-sm p-6 sm:p-12 rounded-2xl border border-[#3B7BAA]/20 shadow-2xl">
             <div className="flex justify-center mb-6">
               <div className="p-4 bg-[#3B7BAA]/20 rounded-full border border-[#3B7BAA]/50">
                 <FaFlask className="text-5xl text-[#3B7BAA]" />
@@ -246,7 +250,7 @@ export default function PremiumProductShowcase() {
             </div>
             <div className="text-[#3B7BAA] text-sm uppercase tracking-widest mb-4">Testing Suite</div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">Test Wizard</h2>
-            <p className="text-base pt-5 pb-5 sm:text-lg text-gray-300 mb-8 leading-relaxed max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg text-gray-300 mb-8 leading-relaxed max-w-2xl mx-auto">
               Create test plans tailored for lunar and deep space missions from proven templates. Automate verification with comprehensive test cases and documentation.
             </p>
             <div className="flex justify-center mb-8 sm:mb-10">
@@ -271,7 +275,7 @@ export default function PremiumProductShowcase() {
             </div>
             <Link
               href="/cascade-portal#test-wizard"
-              className="inline-flex items-center px-6 py-3 bg-[#3B7BAA] hover:bg-[#2a5d87] text-white rounded-lg transition-colors"
+              className="inline-flex items-center px-6 py-3  text-white rounded-lg "
             >
               <FaChartLine className="mr-2" /> Explore Templates
             </Link>
@@ -279,7 +283,7 @@ export default function PremiumProductShowcase() {
         </section>
 
         {/* Feature Request System Panel */}
-        <section className="cascade-section panel md:mt-0 mt-40 w-full h-full flex items-center justify-center p-4 sm:p-8">
+        <section className="cascade-section md:mt-0 mt-30 panel w-full h-full flex items-center justify-center p-4 sm:p-8">
           <div className="design-box w-full max-w-4xl mx-auto text-center bg-gray-900/50 backdrop-blur-sm p-6 sm:p-12 rounded-2xl border border-[#3B7BAA]/20 shadow-2xl">
             <div className="flex justify-center mb-6">
               <div className="p-4 bg-[#3B7BAA]/20 rounded-full border border-[#3B7BAA]/50">
@@ -288,7 +292,7 @@ export default function PremiumProductShowcase() {
             </div>
             <div className="text-[#3B7BAA] text-sm uppercase tracking-widest mb-4">User Collaboration</div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">Feature Request System</h2>
-            <p className="text-base sm:text-lg pt-5 pb-5 text-gray-300 mb-8 leading-relaxed max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg text-gray-300 mb-8 leading-relaxed max-w-2xl mx-auto">
               Shape the future of space tech with our Feature Request System. Vote on and prioritize tools to accelerate your lunar and deep space missions.
             </p>
             <div className="flex justify-center mb-8 sm:mb-10">
@@ -329,10 +333,10 @@ export default function PremiumProductShowcase() {
               <GiSpaceship className="text-5xl text-[#3B7BAA]" />
             </div>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold text-white mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
             Launch Your <span className="text-[#3B7BAA]">Deep Space</span> Mission
           </h2>
-          <p className="text-lg sm:text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg text-gray-300 mb-8 max-w-3xl mx-auto">
             Join innovators using Cascade Portal and our expanding ground station network to power missions beyond Earth.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
