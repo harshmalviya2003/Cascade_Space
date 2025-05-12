@@ -1,9 +1,9 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import {  useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-
+"use client";
+import Link from "next/link";
+import Image from "next/image";
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
 export function Hero() {
   const heroRef = useRef<HTMLElement>(null);
@@ -29,19 +29,19 @@ export function Hero() {
     // Particle animation
     const createParticles = () => {
       if (!particlesRef.current) return;
-      particlesRef.current.innerHTML = '';
+      particlesRef.current.innerHTML = "";
       const particleCount = 60;
 
       for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'absolute rounded-full bg-white/30';
-        
+        const particle = document.createElement("div");
+        particle.className = "absolute rounded-full bg-white/30";
+
         const size = Math.random() * 5 + 2;
         const posX = Math.random() * 100;
         const posY = Math.random() * 100;
         const delay = Math.random() * 5;
         const duration = Math.random() * 20 + 10;
-        
+
         gsap.set(particle, {
           width: `${size}px`,
           height: `${size}px`,
@@ -50,7 +50,7 @@ export function Hero() {
           scale: 0.2,
           opacity: 0,
         });
-        
+
         gsap.to(particle, {
           y: (Math.random() - 0.5) * 200,
           x: (Math.random() - 0.5) * 200,
@@ -60,9 +60,9 @@ export function Hero() {
           delay: delay,
           repeat: -1,
           yoyo: true,
-          ease: 'sine.inOut',
+          ease: "sine.inOut",
         });
-        
+
         particlesRef.current.appendChild(particle);
       }
     };
@@ -70,20 +70,20 @@ export function Hero() {
     // Star animation
     const createStars = () => {
       if (!starsRef.current) return;
-      starsRef.current.innerHTML = '';
+      starsRef.current.innerHTML = "";
       const starCount = 100;
 
       for (let i = 0; i < starCount; i++) {
-        const star = document.createElement('div');
-        star.className = 'absolute rounded-full bg-white';
-        
+        const star = document.createElement("div");
+        star.className = "absolute rounded-full bg-white";
+
         const size = Math.random() * 3 + 1;
         const posX = Math.random() * 100;
         const posY = Math.random() * 100;
         const delay = Math.random() * 3;
         const duration = Math.random() * 5 + 3;
         const brightness = Math.random() * 0.7 + 0.3;
-        
+
         gsap.set(star, {
           width: `${size}px`,
           height: `${size}px`,
@@ -92,23 +92,23 @@ export function Hero() {
           opacity: 0,
           filter: `brightness(${brightness})`,
         });
-        
+
         gsap.to(star, {
           opacity: brightness,
           duration: duration,
           delay: delay,
           repeat: -1,
           yoyo: true,
-          ease: 'power1.inOut',
+          ease: "power1.inOut",
         });
-        
+
         starsRef.current.appendChild(star);
       }
     };
 
     // Animation timeline
     const tl = gsap.timeline({
-      defaults: { ease: 'power4.out' }
+      defaults: { ease: "power4.out" },
     });
 
     tl.fromTo(
@@ -116,34 +116,34 @@ export function Hero() {
       { y: 80, opacity: 0 },
       { y: 0, opacity: 1, duration: 1.2 }
     )
-    .fromTo(
-      subheadingRef.current,
-      { y: 60, opacity: 0 },
-      { y: 0, opacity: 1, duration: 1.2 },
-      '-=0.8'
-    )
-    .fromTo(
-      textRef.current,
-      { y: 50, opacity: 0 },
-      { y: 0, opacity: 1, duration: 1 },
-      '-=0.6'
-    )
-    .fromTo(
-      buttonContainerRef.current,
-      { y: 40, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.8 },
-      '-=0.4'
-    );
+      .fromTo(
+        subheadingRef.current,
+        { y: 60, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1.2 },
+        "-=0.8"
+      )
+      .fromTo(
+        textRef.current,
+        { y: 50, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1 },
+        "-=0.6"
+      )
+      .fromTo(
+        buttonContainerRef.current,
+        { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8 },
+        "-=0.4"
+      );
 
     // Parallax effect on scroll
     gsap.to(heroRef.current, {
       scrollTrigger: {
         trigger: heroRef.current,
-        start: 'top top',
-        end: 'bottom top',
+        start: "top top",
+        end: "bottom top",
         scrub: 1.5,
       },
-      backgroundPosition: '50% 40%',
+      backgroundPosition: "50% 40%",
     });
 
     // Initialize effects
@@ -152,14 +152,14 @@ export function Hero() {
 
     return () => {
       tl.kill();
-      ScrollTrigger.getAll().forEach(t => t.kill());
+      ScrollTrigger.getAll().forEach((t) => t.kill());
     };
   }, []);
 
   return (
-    <section 
+    <section
       ref={heroRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden  bg-center bg-cover"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-center bg-cover"
       style={{ backgroundImage: "url('/images/space-bg.jpg')" }}
     >
       {/* Video Background */}
@@ -173,10 +173,10 @@ export function Hero() {
           playsInline
         >
           <source src="/videos/hero.mp4" type="video/mp4" />
-          <Image 
-            src="/images/space-fallback.jpg" 
+          <Image
+            src="/images/space-fallback.jpg"
             fill
-            alt="Space background"
+            alt="Deep space communications background"
             className="object-cover"
             priority
           />
@@ -197,54 +197,74 @@ export function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-20 w-full mt-20  py-32 px-4 sm:px-6">
+      <div className="relative z-20 w-full mt-20 py-32 px-4 sm:px-6">
         <div className="container mx-auto">
           <div className="max-w-6xl mx-auto text-center">
             <div ref={headingRef} className="mb-6">
               <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white leading-tight tracking-tight">
                 <span className="block bg-clip-text text-transparent bg-gradient-to-r from-[#3B7BAA] to-[#3B7BAA]/90">
-                  Intergalactic Payment
+                  Deep Space Communications
                 </span>
               </h1>
             </div>
 
             <div ref={subheadingRef} className="mb-8">
               <h2 className="text-3xl sm:text-4xl md:text-5xl text-white font-medium">
-                Solutions for the <span className="text-[#3B7BAA] font-semibold">Digital Universe</span>
+                Powering Missions <span className="text-[#3B7BAA] font-semibold">Beyond Earth</span>
               </h2>
             </div>
 
             <div ref={textRef} className="mb-12 max-w-3xl mx-auto">
               <p className="text-xl sm:text-2xl text-white/85 leading-relaxed">
-                Revolutionizing financial transactions across the cosmos with our 
-                <span className="text-[#3B7BAA] font-semibold"> quantum payment technology</span> and 
-                <span className="text-white font-semibold"> zero-gravity security protocols</span>.
+                Design and operate spacecraft with ease using our{" "}
+                <span className="text-[#3B7BAA] font-semibold">Cascade Portal</span> and global{" "}
+                <span className="text-white font-semibold">ground station network</span>, engineered for lunar and deep space missions.
               </p>
             </div>
 
             <div ref={buttonContainerRef} className="flex flex-wrap justify-center gap-6">
-              <Link 
-                href="/contact-us" 
+              <Link
+                href="/contact-us"
                 className="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white rounded-full overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-[#3B7BAA]/30"
               >
                 <span className="absolute inset-0 bg-gradient-to-r from-[#3B7BAA] to-[#3B7BAA]/80 opacity-100 group-hover:opacity-90 transition-opacity duration-300"></span>
                 <span className="absolute inset-0 bg-gradient-to-r from-[#3B7BAA]/90 to-[#3B7BAA]/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
                 <span className="relative z-10 flex items-center">
-                  Launch Your Project
-                  <svg className="w-6 h-6 ml-3 transition-transform group-hover:translate-x-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                  Start Your Mission
+                  <svg
+                    className="w-6 h-6 ml-3 transition-transform group-hover:translate-x-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M14 5l7 7m0 0l-7 7m7-7H3"
+                    ></path>
                   </svg>
                 </span>
               </Link>
-              <Link 
-                href="/demo" 
+              <Link
+                href="/cascade-portal"
                 className="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white rounded-full overflow-hidden transition-all duration-300 border-2 border-white/30 hover:border-white/50"
               >
                 <span className="absolute inset-0 bg-white/5 backdrop-blur-sm group-hover:bg-white/10 transition-all duration-300"></span>
                 <span className="relative z-10 flex items-center">
-                  Explore Demo
-                  <svg className="w-6 h-6 ml-3 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                  Discover Cascade Portal
+                  <svg
+                    className="w-6 h-6 ml-3 transition-transform group-hover:translate-x-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                    ></path>
                   </svg>
                 </span>
               </Link>

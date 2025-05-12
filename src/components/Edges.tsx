@@ -1,34 +1,38 @@
-import { useState } from 'react';
-import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { FaShieldAlt, FaLock, FaCog } from 'react-icons/fa'; // Import icons
+"use client";
+import { useState } from "react";
+import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { FaRocket, FaSatellite, FaUsers } from "react-icons/fa"; // Updated icons
 
 export default function Edges() {
-  const [activeTab, setActiveTab] = useState('Responsibility');
+  const [activeTab, setActiveTab] = useState("Innovation");
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
 
   const tabs = [
     {
-      name: 'Responsibility',
-      icon: <FaShieldAlt className="w-6 h-6" />, // Icon for Responsibility
-      content: "AKARI's robust experience in the financial sphere sets us apart. As professionals in finance, we're well-versed in risk management and ready to bear responsibility.",
-      link: '/possibilities',
-      linkText: 'Learn our possibilities',
+      name: "Innovation",
+      icon: <FaRocket className="w-6 h-6" />,
+      content:
+        "Our Cascade Portal empowers spacecraft design with validated tools like RF Designer and Test Wizard, plus a collaborative Feature Request System to prioritize your mission’s needs.",
+      link: "/cascade-portal",
+      linkText: "Explore Cascade Portal",
     },
     {
-      name: 'Security',
-      icon: <FaLock className="w-6 h-6" />, // Icon for Security
-      content: 'With our PCI DSS Lvl1 certified payment platform, we ensure 3Ds V2 secure and standard-compliant transactions.',
-      link: '/protection',
-      linkText: 'Learn our protection',
+      name: "Infrastructure",
+      icon: <FaSatellite className="w-6 h-6" />,
+      content:
+        "The Cascade Network delivers robust ground station support for deep space missions, with plans for Trans-Lunar Injection by Q1 2026 and 24/7 lunar coverage by 2027.",
+      link: "/cascade-network",
+      linkText: "Discover Cascade Network",
     },
     {
-      name: 'Flexibility',
-      icon: <FaCog className="w-6 h-6" />, // Icon for Flexibility
-      content: 'Offering bespoke e-commerce payment processing solutions, we can tailor our services to fit your unique business requirements.',
-      link: '/business-e-com',
-      linkText: 'Learn e-com solution',
+      name: "Expertise",
+      icon: <FaUsers className="w-6 h-6" />,
+      content:
+        "Backed by Y Combinator and Undeterred Capital, our team specializes in simplifying communications for lunar and deep space missions, ensuring your project’s success.",
+      link: "/missions",
+      linkText: "Learn About Our Missions",
     },
   ];
 
@@ -42,12 +46,12 @@ export default function Edges() {
 
   const leftVariants = {
     hidden: { x: -100, opacity: 0 },
-    visible: { x: 0, opacity: 1, transition: { duration: 0.6, ease: 'easeOut' } },
+    visible: { x: 0, opacity: 1, transition: { duration: 0.6, ease: "easeOut" } },
   };
 
   const rightVariants = {
     hidden: { x: 100, opacity: 0 },
-    visible: { x: 0, opacity: 1, transition: { duration: 0.6, ease: 'easeOut' } },
+    visible: { x: 0, opacity: 1, transition: { duration: 0.6, ease: "easeOut" } },
   };
 
   return (
@@ -56,11 +60,11 @@ export default function Edges() {
         className="max-w-6xl mx-auto px-4"
         variants={containerVariants}
         initial="hidden"
-        animate={inView ? 'visible' : 'hidden'}
+        animate={inView ? "visible" : "hidden"}
       >
         <motion.div variants={leftVariants} className="text-center mb-12">
           <h2 className="text-4xl font-bold text-black">
-            Our <span className="text-[#3b7baa]">Competitive</span> Edges
+            Why <span className="text-[#3b7baa]">Choose</span> Cascade Space
           </h2>
         </motion.div>
 
@@ -73,13 +77,13 @@ export default function Edges() {
                   onClick={() => setActiveTab(tab.name)}
                   className={`flex items-center gap-3 p-4 rounded-lg transition-all duration-300 ${
                     activeTab === tab.name
-                      ? 'bg-[#3b7baa] text-white shadow-lg'
-                      : 'bg-white text-indigo-900 hover:bg-indigo-100'
+                      ? "bg-[#3b7baa] text-white shadow-lg"
+                      : "bg-white text-indigo-900 hover:bg-indigo-100"
                   }`}
                 >
                   <div
                     className={`w-8 h-8 flex items-center justify-center transition-colors ${
-                      activeTab === tab.name ? 'text-white' : 'text-[#3b7baa]'
+                      activeTab === tab.name ? "text-white" : "text-[#3b7baa]"
                     }`}
                   >
                     {tab.icon}
@@ -107,7 +111,7 @@ export default function Edges() {
                         <div className="w-full md:w-1/3 h-48 flex items-center justify-center">
                           <div
                             className="text-[#3b7baa] transform transition-transform hover:scale-110"
-                            style={{ fontSize: '4rem' }} // Larger icon for content section
+                            style={{ fontSize: "4rem" }}
                           >
                             {tab.icon}
                           </div>

@@ -1,9 +1,10 @@
-import { useEffect } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { FaCode, FaUserCheck, FaChartBar, FaHeadset, FaRobot } from 'react-icons/fa'; // Import icons
+"use client";
+import { useEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { FaTools, FaSatellite, FaUsers, FaRocket, FaHeadset } from "react-icons/fa"; // Updated icons
 
 // Register ScrollTrigger with GSAP
 gsap.registerPlugin(ScrollTrigger);
@@ -12,134 +13,134 @@ export default function Cards() {
   useEffect(() => {
     // Animate the advantages text
     gsap.fromTo(
-      '.added_advatages_text',
+      ".added_advatages_text",
       { opacity: 0, y: 50 },
       {
         opacity: 1,
         y: 0,
         duration: 1,
-        ease: 'power3.out',
+        ease: "power3.out",
         scrollTrigger: {
-          trigger: '.added_advatages_text',
-          start: 'top 80%',
-          toggleActions: 'play none none reset',
+          trigger: ".added_advatages_text",
+          start: "top 80%",
+          toggleActions: "play none none reset",
         },
       }
     );
 
     // Animate cards with stagger
     gsap.fromTo(
-      '.card_wrapper',
+      ".card_wrapper",
       { opacity: 0, x: -50 },
       {
         opacity: 1,
         x: 0,
         duration: 0.8,
         stagger: 0.2,
-        ease: 'power2.out',
+        ease: "power2.out",
         scrollTrigger: {
-          trigger: '.cards_wrapper',
-          start: 'top 75%',
-          toggleActions: 'play none none reset',
+          trigger: ".cards_wrapper",
+          start: "top 75%",
+          toggleActions: "play none none reset",
         },
       }
     );
 
     // Animate planet images
     gsap.fromTo(
-      '.advantages_planet_1',
+      ".advantages_planet_1",
       { scale: 0.8, opacity: 0 },
       {
         scale: 1,
         opacity: 1,
         duration: 1.2,
-        ease: 'elastic.out(1, 0.75)',
+        ease: "elastic.out(1, 0.75)",
         scrollTrigger: {
-          trigger: '.advantages_planet_1',
-          start: 'top 90%',
-          toggleActions: 'play none none reset',
+          trigger: ".advantages_planet_1",
+          start: "top 90%",
+          toggleActions: "play none none reset",
         },
       }
     );
 
     gsap.fromTo(
-      '.advantages_planet_2',
+      ".advantages_planet_2",
       { scale: 0.8, opacity: 0 },
       {
         scale: 1,
         opacity: 1,
         duration: 1,
-        ease: 'elastic.out(1, 0.75)',
+        ease: "elastic.out(1, 0.75)",
         scrollTrigger: {
-          trigger: '.advantages_planet_2',
-          start: 'top 90%',
-          toggleActions: 'play none none reset',
+          trigger: ".advantages_planet_2",
+          start: "top 90%",
+          toggleActions: "play none none reset",
         },
       }
     );
 
     // Animate stars
     gsap.fromTo(
-      '.advantages_stars',
+      ".advantages_stars",
       { opacity: 0, y: 30 },
       {
         opacity: 1,
         y: 0,
         duration: 1,
-        ease: 'power2.out',
+        ease: "power2.out",
         scrollTrigger: {
-          trigger: '.advantages_stars',
-          start: 'top 90%',
-          toggleActions: 'play none none reset',
+          trigger: ".advantages_stars",
+          start: "top 90%",
+          toggleActions: "play none none reset",
         },
       }
     );
 
     // Animate About Us section
     gsap.fromTo(
-      '.section_heading',
+      ".section_heading",
       { opacity: 0, y: -30 },
       {
         opacity: 1,
         y: 0,
         duration: 0.8,
-        ease: 'power3.out',
+        ease: "power3.out",
         scrollTrigger: {
-          trigger: '.section_heading',
-          start: 'top 80%',
-          toggleActions: 'play none none reset',
+          trigger: ".section_heading",
+          start: "top 80%",
+          toggleActions: "play none none reset",
         },
       }
     );
 
     gsap.fromTo(
-      '.about_logo_wrapper',
+      ".about_logo_wrapper",
       { scale: 0.9, opacity: 0 },
       {
         scale: 1,
         opacity: 1,
         duration: 1,
-        ease: 'power3.out',
+        ease: "power3.out",
         scrollTrigger: {
-          trigger: '.about_logo_wrapper',
-          start: 'top 85%',
-          toggleActions: 'play none none reset',
+          trigger: ".about_logo_wrapper",
+          start: "top 85%",
+          toggleActions: "play none none reset",
         },
       }
     );
 
     gsap.fromTo(
-      '.about_text_wrapper',
+      ".about_text_wrapper",
       { opacity: 0, x: 50 },
       {
         opacity: 1,
         x: 0,
         duration: 1,
-        ease: 'power3.out',
+        ease: "power3.out",
         scrollTrigger: {
-          trigger: '.about_text_wrapper',
-          start: 'top 80%',
-          toggleActions: 'play none none reset',
+          trigger: ".about_text_wrapper",
+          start: "top 80%",
+          toggleActions: "play none none reset",
         },
       }
     );
@@ -152,24 +153,24 @@ export default function Cards() {
 
   const cards = [
     {
-      icon: <FaCode className="w-8 h-8 text-white" />,
-      text: 'Simple, yet comprehensive API integration for seamless operations.',
+      icon: <FaTools className="w-8 h-8 text-white" />,
+      text: "Streamlined spacecraft design with Cascade Portal’s RF Designer and Test Wizard.",
     },
     {
-      icon: <FaUserCheck className="w-8 h-8 text-white" />,
-      text: 'Expert guidance in configuring advanced and alternative payment methods.',
+      icon: <FaSatellite className="w-8 h-8 text-white" />,
+      text: "Reliable deep space communications via the Cascade Network’s global ground stations.",
     },
     {
-      icon: <FaChartBar className="w-8 h-8 text-white" />,
-      text: 'Capabilities to export insightful analytics to external BI systems for data-driven decision making.',
+      icon: <FaUsers className="w-8 h-8 text-white" />,
+      text: "Shape mission-critical tools with our collaborative Feature Request System.",
+    },
+    {
+      icon: <FaRocket className="w-8 h-8 text-white" />,
+      text: "Future-ready with lunar coverage planned for 2027, starting with TLI in Q1 2026.",
     },
     {
       icon: <FaHeadset className="w-8 h-8 text-white" />,
-      text: 'Round-the-clock technical support to ensure smooth transactions.',
-    },
-    {
-      icon: <FaRobot className="w-8 h-8 text-white" />,
-      text: 'Automation of all types of reporting, boosting your business efficiency.',
+      text: "Expert support to ensure your deep space mission’s success, from design to launch.",
     },
   ];
 
@@ -181,16 +182,15 @@ export default function Cards() {
           <div className="text_cards_wrapper">
             <div className="added_advantages_content">
               <div className="added_advatages_text">
-                <h2>Added Advantages:</h2>
+                <h2>Our Advantages:</h2>
                 <p>
-                  Our journey through the intricacies of dealing with high-risk clients, coupled with our proficiency in
-                  crafting diverse business processing solutions, has equipped us with a wealth of experience and expertise
-                  in payment systems. Our multilingual team is adept at fostering effective dialogues and communication with
-                  banks, PSPs, and merchants. This proficiency enables us to conduct business across a multitude of regions,
-                  including the majority of European Union countries, Asia, Africa, and CIS countries.
+                  Cascade Space is transforming deep space exploration with innovative tools and infrastructure. Our
+                  expertise in spacecraft design and communications, combined with a user-centric approach, empowers
+                  missions beyond Earth. From the Cascade Portal’s validated software to our expanding ground station
+                  network, we’re building the backbone for lunar and deep space success.
                 </p>
-                <Link href="/contact-us" className="button_primary w-button">
-                  Contact us
+                <Link href="/contact-us" className="button_primary bg-[#3B7BAA] w-button">
+                  Start Your Mission
                 </Link>
               </div>
             </div>
@@ -198,9 +198,7 @@ export default function Cards() {
               <div className="cards_column">
                 {cards.slice(0, 3).map((card, index) => (
                   <div key={index} className="card_wrapper dark_blue">
-                    <div className="card_icon flex items-center justify-center">
-                      {card.icon}
-                    </div>
+                    <div className="card_icon flex items-center justify-center">{card.icon}</div>
                     <p>{card.text}</p>
                   </div>
                 ))}
@@ -208,9 +206,7 @@ export default function Cards() {
               <div className="cards_column">
                 {cards.slice(3).map((card, index) => (
                   <div key={index} className="card_wrapper dark_blue">
-                    <div className="card_icon flex items-center justify-center">
-                      {card.icon}
-                    </div>
+                    <div className="card_icon flex items-center justify-center">{card.icon}</div>
                     <p>{card.text}</p>
                   </div>
                 ))}
@@ -219,17 +215,17 @@ export default function Cards() {
           </div>
         </div>
         <div className="advantages_planet_1 notouch">
-          <video autoPlay loop muted playsInline style={{ width: '582px', height: '582px', objectFit: 'cover' }}>
+          <video autoPlay loop muted playsInline style={{ width: "582px", height: "582px", objectFit: "cover" }}>
             <source src="/videos/v.mp4" type="video/mp4" />
           </video>
         </div>
         <div className="advantages_planet_2 notouch">
-          <video autoPlay loop muted playsInline style={{ width: '57px', height: '57px', objectFit: 'cover' }}>
+          <video autoPlay loop muted playsInline style={{ width: "57px", height: "57px", objectFit: "cover" }}>
             <source src="/planet2.mp4" type="video/mp4" />
           </video>
         </div>
         <div className="advantages_stars notouch">
-          <video autoPlay loop muted playsInline style={{ width: '100%', height: '100%', objectFit: 'cover' }}>
+          <video autoPlay loop muted playsInline style={{ width: "100%", height: "100%", objectFit: "cover" }}>
             <source src="/videos/v.mp4" type="video/mp4" />
           </video>
         </div>
@@ -249,24 +245,24 @@ export default function Cards() {
                     loading="lazy"
                     width={392}
                     height={392}
-                    alt=""
+                    alt="Cascade Space Logo"
                     sizes="(max-width: 479px) 100vw, (max-width: 991px) 392px, 36vw"
                   />
                 </div>
                 <div className="about_logo_gradient"></div>
               </div>
-              <Link href="/possibilities" className="button_primary bg-[#3B7BAA] w-button">
-                More about us
+              <Link href="/missions" className="button_primary bg-[#3B7BAA] w-button">
+                Learn Our Mission
               </Link>
             </div>
             <div className="about_text_wrapper">
               <p>
-                AKARI is a state-of-the-art, comprehensive project, innovatively designed by leading experts in the banking
-                and online payment processing industry.
+                Cascade Space is pioneering deep space communications with the Cascade Portal and Network, backed by Y
+                Combinator and Undeterred Capital.
               </p>
               <p className="text_20px">
-                Our team is formed by elite banking security professionals, online acquiring experts, high-profile
-                developers, programmers, and analytics, all passionate and detail-oriented when it comes to each project.
+                Our team of aerospace experts, engineers, and innovators is dedicated to simplifying spacecraft design and
+                communications for lunar and deep space missions, empowering the next era of exploration.
               </p>
             </div>
           </div>

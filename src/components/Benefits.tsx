@@ -1,7 +1,9 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { FaBolt, FaShieldAlt, FaCog, FaRocket, FaLock } from 'react-icons/fa'; // Import icons
+"use client";
+import { useState } from "react";
+import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { FaTools, FaSatellite, FaUsers, FaRocket, FaStar } from "react-icons/fa"; // Updated icons
 
 export default function Benefits() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
@@ -17,29 +19,29 @@ export default function Benefits() {
   // Define dropdowns with icons
   const dropdowns = [
     {
-      name: 'fast',
-      icon: <FaBolt className="w-6 h-6 text-white" />,
-      text: "AKARI's software handles high-load scenarios, processing over 300 transactions per second on our independent platform.",
+      name: "efficient",
+      icon: <FaTools className="w-6 h-6 text-white" />,
+      text: "Cascade Portal streamlines spacecraft design with RF Designer and Test Wizard, saving time and ensuring mission-ready systems.",
     },
     {
-      name: 'stable',
-      icon: <FaShieldAlt className="w-6 h-6 text-white" />,
-      text: "We ensure 24/7 stability with AWS, trusted by major global banks for top-tier reliability.",
+      name: "reliable",
+      icon: <FaSatellite className="w-6 h-6 text-white" />,
+      text: "The Cascade Network provides robust ground station support, ensuring uninterrupted communications for deep space missions.",
     },
     {
-      name: 'flexible',
-      icon: <FaCog className="w-6 h-6 text-white" />,
-      text: "AKARI's payment gateway adapts to any business need, integrating with BI, CRM, and ERP systems for comprehensive analytics.",
+      name: "collaborative",
+      icon: <FaUsers className="w-6 h-6 text-white" />,
+      text: "Our Feature Request System lets you shape mission-critical tools, prioritizing features that matter most to your project.",
     },
     {
-      name: 'modern',
+      name: "future-ready",
       icon: <FaRocket className="w-6 h-6 text-white" />,
-      text: "Our e-commerce payment software is regularly updated with new features and integrations tailored to your business.",
+      text: "With plans for Trans-Lunar Injection by Q1 2026 and 24/7 lunar coverage by 2027, we’re building the future of space exploration.",
     },
     {
-      name: 'secure',
-      icon: <FaLock className="w-6 h-6 text-white" />,
-      text: "AKARI complies with PCI DSS Level 1 standards through rigorous annual audits, ensuring secure payment processing.",
+      name: "expert-led",
+      icon: <FaStar className="w-6 h-6 text-white" />,
+      text: "Backed by Y Combinator and Undeterred Capital, our team of aerospace experts delivers proven solutions for lunar and deep space missions.",
     },
   ];
 
@@ -65,8 +67,8 @@ export default function Benefits() {
   };
 
   const dropdownAnimation = {
-    hidden: { height: 0, opacity: 0, overflow: 'hidden' },
-    visible: { height: 'auto', opacity: 1, transition: { duration: 0.3 } },
+    hidden: { height: 0, opacity: 0, overflow: "hidden" },
+    visible: { height: "auto", opacity: 1, transition: { duration: 0.3 } },
     exit: { height: 0, opacity: 0, transition: { duration: 0.3 } },
   };
 
@@ -75,22 +77,22 @@ export default function Benefits() {
       className="section mt-20 bg-white"
       ref={ref}
       initial="hidden"
-      animate={inView ? 'visible' : 'hidden'}
+      animate={inView ? "visible" : "hidden"}
     >
       <div className="w-layout-blockcontainer container w-container">
         <motion.div className="benefits_content_wrapper" variants={container}>
           <motion.div
             className="section_heading"
             variants={slideLeft}
-            style={{ color: '#3B7BAA' }}
+            style={{ color: "#3B7BAA" }}
           >
-            <div>Our Benefits</div>
+            <div>Why Cascade Space</div>
           </motion.div>
           <motion.div className="benefits_heading_wrapper" variants={slideRight}>
             <h2 className="text-black">
-              AKARI - A reliable, cutting-edge platform for your business!<br />
+              Powering lunar and deep space missions with innovative tools and infrastructure.<br />
               <span className="text-gray-500">
-                When it comes to payment processing, technology and speed are paramount.
+                From spacecraft design to reliable communications, we’ve got you covered.
               </span>
             </h2>
           </motion.div>
@@ -99,17 +101,17 @@ export default function Benefits() {
               className="gradient_card"
               variants={slideLeft}
               style={{
-                background: 'linear-gradient(135deg, #3B7BAA 0%, #ffffff 100%)',
-                borderRadius: '8px',
-                padding: '20px',
+                background: "linear-gradient(135deg, #3B7BAA 0%, #ffffff 100%)",
+                borderRadius: "8px",
+                padding: "20px",
               }}
             >
               <div className="benefits_card_content">
-                <div className="benefits_card_number" style={{ color: '#ffffff' }}>
-                  24/7
+                <div className="benefits_card_number" style={{ color: "#ffffff" }}>
+                  Global
                 </div>
                 <div className="text-white">
-                  Guaranteed stable work leveraging the robust capacities of AWS.
+                  Connect anywhere with our expanding Cascade Network of ground stations.
                 </div>
               </div>
             </motion.div>
@@ -117,29 +119,38 @@ export default function Benefits() {
               className="gradient_card second"
               variants={slideRight}
               style={{
-                background: 'linear-gradient(135deg, #3B7BAA 0%, #ffffff 100%)',
-                borderRadius: '8px',
-                padding: '20px',
+                background: "linear-gradient(135deg, #3B7BAA 0%, #ffffff 100%)",
+                borderRadius: "8px",
+                padding: "20px",
               }}
             >
               <div className="benefits_card_content">
-                <div className="benefits_card_number" style={{ color: '#ffffff' }}>
-                  300/second
+                <div className="benefits_card_number" style={{ color: "#ffffff" }}>
+                  Days
                 </div>
                 <div className="text-white">
-                  Transactions managed by our high-capacity platform.
+                  Design spacecraft in days with Cascade Portal’s validated tools.
                 </div>
               </div>
             </motion.div>
           </motion.div>
+          <motion.div className="benefits_cta_wrapper" variants={slideLeft}>
+            <Link
+              href="/contact-us"
+              className="inline-block px-6 py-2 bg-[#3B7BAA] text-white rounded-full hover:bg-indigo-700 transition-colors"
+            >
+              Start Your Mission
+            </Link>
+          </motion.div>
         </motion.div>
       </div>
-      <div className="card_grey" style={{ backgroundColor: '#f9fafb' }}>
+      <div className="card_grey" style={{ backgroundColor: "#f9fafb" }}>
         <div className="w-layout-blockcontainer container w-container">
           <motion.div className="benefits_dropdown_faq_wrapper" variants={container}>
             <motion.div className="benefits_dropdown_heading" variants={slideLeft}>
               <p className="text-gray-700">
-                With AKARI&apos;s advanced payment technologies, rest assured of a reliable system for a stable and profitable business.
+                Cascade Space delivers cutting-edge solutions for spacecraft design and reliable communications, empowering
+                your mission to the Moon and beyond.
               </p>
             </motion.div>
             <motion.div className="benefits_all_dropdowns_wrapper" variants={container}>
@@ -147,7 +158,7 @@ export default function Benefits() {
                 <div
                   key={dropdown.name}
                   className={`benefits_dropdown_wrapper w-dropdown ${
-                    openDropdown === dropdown.name ? 'w--open' : ''
+                    openDropdown === dropdown.name ? "w--open" : ""
                   }`}
                 >
                   <motion.div
@@ -156,20 +167,20 @@ export default function Benefits() {
                     variants={slideRight}
                     whileHover={{ scale: 1.02 }}
                     style={{
-                      borderBottom: openDropdown === dropdown.name ? '2px solid #3B7BAA' : '1px solid #e5e7eb',
+                      borderBottom: openDropdown === dropdown.name ? "2px solid #3B7BAA" : "1px solid #e5e7eb",
                     }}
                   >
                     <div
                       className="tab_active_icon flex items-center justify-center"
                       style={{
-                        width: openDropdown === dropdown.name ? '40px' : '0px',
-                        backgroundColor: '#3B7BAA',
+                        width: openDropdown === dropdown.name ? "40px" : "0px",
+                        backgroundColor: "#3B7BAA",
                       }}
                     >
                       {openDropdown === dropdown.name && dropdown.icon}
                     </div>
                     <div className="dropdown_heading">
-                      <div style={{ color: openDropdown === dropdown.name ? '#3B7BAA' : '#000000' }}>
+                      <div style={{ color: openDropdown === dropdown.name ? "#3B7BAA" : "#000000" }}>
                         {dropdown.name.charAt(0).toUpperCase() + dropdown.name.slice(1)}
                       </div>
                     </div>
@@ -183,10 +194,10 @@ export default function Benefits() {
                         exit="exit"
                         variants={dropdownAnimation}
                         style={{
-                          backgroundColor: '#ffffff',
-                          border: '1px solid #3B7BAA',
-                          borderRadius: '4px',
-                          padding: '10px',
+                          backgroundColor: "#ffffff",
+                          border: "1px solid #3B7BAA",
+                          borderRadius: "4px",
+                          padding: "10px",
                         }}
                       >
                         <p className="text-gray-700">{dropdown.text}</p>
