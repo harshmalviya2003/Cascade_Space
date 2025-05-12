@@ -3,36 +3,10 @@ import Head from "next/head";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { FaRocket } from "react-icons/fa";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 
 export default function NotFound() {
   // Animation variants remain unchanged
-  const rocketVariants = {
-    float: {
-      y: [0, -20, 0],
-      rotate: [-5, 5, -5],
-      transition: {
-        y: {
-          repeat: Infinity,
-          duration: 2.5,
-          ease: "easeInOut",
-          repeatType: "reverse",
-        },
-        rotate: {
-          repeat: Infinity,
-          duration: 3.5,
-          ease: "easeInOut",
-          repeatType: "mirror",
-        },
-      },
-    },
-    hover: {
-      scale: 1.1,
-      rotate: 10,
-      transition: { duration: 0.3 },
-    },
-  };
+  
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -111,7 +85,7 @@ export default function NotFound() {
                 className="text-gray-600 text-xl md:text-2xl mb-10 max-w-3xl mx-auto leading-relaxed"
                 variants={itemVariants}
               >
-                Error 404: The page you're looking for has drifted into the cosmic void. Let's navigate you back to mission control!
+                Error 404: The page you&apos;re looking for has drifted into the cosmic void. Let&apos;s navigate you back to mission control!
               </motion.p>
             </motion.div>
 
