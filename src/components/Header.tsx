@@ -29,17 +29,17 @@ export default function Header() {
               alt="Cascade Space - Deep Space Communications"
               className="header-logo"
             /> */}
-            <h3 className="text-white text-2xl font-bold">YOUR LOGO</h3>
+            <h3 className="text-white text-2xl md:ml-0 ml-25 font-bold">cascade.space</h3>
           </Link>
-          <div
-            className="header_menu_icon w-nav-button"
-            style={{ color: "white" }}
-            onClick={toggleMenu}
-          >
-            <div className={`menu-icon-bar ${isMenuOpen ? "open" : ""}`}></div>
-            <div className={`menu-icon-bar ${isMenuOpen ? "open" : ""}`}></div>
-            <div className={`menu-icon-bar ${isMenuOpen ? "open" : ""}`}></div>
-          </div>
+            {/* <div
+              className=""
+              style={{ color: "white" }}
+              onClick={toggleMenu}
+            >
+              <div className={`menu-icon-bar ${isMenuOpen ? "open" : ""}`}></div>
+              <div className={`menu-icon-bar ${isMenuOpen ? "open" : ""}`}></div>
+              <div className={`menu-icon-bar ${isMenuOpen ? "open" : ""}`}></div>
+            </div> */}
           <nav
             role="navigation"
             className={`header_menu w-nav-menu ${isMenuOpen ? "mobile-open" : ""}`}
@@ -195,7 +195,7 @@ export default function Header() {
         </div>
       </div>
 
-      <style jsx>{`
+      {/* <style jsx>{`
         @media (max-width: 991px) {
           .header-logo {
             width: 80px;
@@ -276,7 +276,7 @@ export default function Header() {
             display: none;
           }
         }
-      `}</style>
+      `}</style> */}
     </header>
   );
 }
