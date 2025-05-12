@@ -140,8 +140,9 @@ export default function PremiumProductShowcase() {
       });
 
       gsap.from(".cascade-text", {
-        opacity: 0,
+        opacity: 1,
         duration: 1,
+        visibility: "visible",
         stagger: 0.1,
         scrollTrigger: {
           trigger: ".cascade-section",
@@ -418,8 +419,7 @@ export default function PremiumProductShowcase() {
         // Desktop View (Horizontal Scrolling)
         <div ref={containerRef} className="relative h-screen w-[400%] flex z-10 box-border">
           {/* Cascade Portal Panel */}
-          <section className="panel w-full h-full flex items-center justify-center p-4 sm:p-8">
-            <div className="w-full max-w-4xl mx-auto text-center bg-gray-900/50 backdrop-blur-sm p-6 sm:p-12 rounded-2xl border border-[#3B7BAA]/20 shadow-2xl">
+          <section className="panel w-full h-full flex items-center justify-center p-4 sm:p-8 opacity-100">            <div className="w-full max-w-4xl mx-auto text-center bg-gray-900/50 backdrop-blur-sm p-6 sm:p-12 rounded-2xl border border-[#3B7BAA]/20 shadow-2xl">
               <div className="flex justify-center mb-6">
                 <div className="p-4 bg-[#3B7BAA]/20 rounded-full border border-[#3B7BAA]/50">
                   <GiSpaceship className="text-5xl text-[#3B7BAA]" />
