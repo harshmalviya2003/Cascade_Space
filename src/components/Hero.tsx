@@ -13,7 +13,6 @@ export function Hero() {
   const buttonContainerRef = useRef<HTMLDivElement>(null);
   const particlesRef = useRef<HTMLDivElement>(null);
   const starsRef = useRef<HTMLDivElement>(null);
-  const [ setVideoLoaded] = useState(false); // Track video load state
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
