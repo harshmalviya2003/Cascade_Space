@@ -197,7 +197,7 @@ export function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-20 w-full mt-20 py-32 px-4 sm:px-6">
+      <div className="relative z-20 w-full md:mt-20 mt-10 py-32 px-4 sm:px-6">
         <div className="container mx-auto">
           <div className="max-w-6xl mx-auto text-center">
             <div ref={headingRef} className="mb-6">
