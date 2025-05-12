@@ -105,7 +105,7 @@ export default function Footer() {
             {/* Bottom Links and Copyright */}
             <div className="flex flex-col md:flex-row justify-between items-center w-full pt-5 border-t border-white/10">
               <div className="text-gray-400 text-sm mb-5 md:mb-0">
-                <p>© Cascade Space, Inc., 2025</p>
+                <p>© Design By DesignsVerse, 2025</p>
               </div>
               <div className="flex flex-wrap justify-center gap-5">
                 <Link
