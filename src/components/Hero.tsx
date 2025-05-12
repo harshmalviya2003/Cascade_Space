@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
@@ -14,6 +14,7 @@ export function Hero() {
   const buttonContainerRef = useRef<HTMLDivElement>(null);
   const particlesRef = useRef<HTMLDivElement>(null);
   const starsRef = useRef<HTMLDivElement>(null);
+  const [videoLoaded, setVideoLoaded] = useState(false); // Track video load state
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -23,7 +24,20 @@ export function Hero() {
       videoRef.current.loop = true;
       videoRef.current.muted = true;
       videoRef.current.playsInline = true;
-      videoRef.current.play().catch((error: Error) => console.log("Video autoplay prevented:", error));
+
+      // Handle video load
+      videoRef.current.onloadeddata = () => {
+        setVideoLoaded(true);
+        videoRef.current?.play().catch((error: Error) => {
+          console.error("Video autoplay prevented:", error);
+        });
+      };
+
+      // Handle video load error
+      videoRef.current.onerror = () => {
+        console.error("Video failed to load: /videos/hero.mp4");
+        setVideoLoaded(false);
+      };
     }
 
     // Particle animation
@@ -171,16 +185,21 @@ export function Hero() {
           muted
           loop
           playsInline
+          preload="auto" // Preload video
+          poster="/videos/hero.mp4" // Show poster while video loads
         >
           <source src="/videos/hero.mp4" type="video/mp4" />
+        </video>
+        {/* Show fallback image only if video fails to load */}
+        {/* {!videoLoaded && (
           <Image
-            src="/images/space-fallback.jpg"
+            src="/images/hero.jpg"
             fill
             alt="Deep space communications background"
             className="object-cover"
             priority
           />
-        </video>
+        )} */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/50 to-black/80"></div>
       </div>
 
@@ -275,12 +294,13 @@ export function Hero() {
 
       {/* Scroll Indicator */}
       <div className="absolute bottom-5 left-1/2 transform -translate-x-1/2 z-20">
-        <div className="animate-bounce w-10 h-16 flex flex-col items-center">
-          <div className="w-1 h-8 bg-white/50 rounded-full overflow-hidden">
-            <div className="w-full h-full bg-gradient-to-b from-[#3B7BAA] to-transparent animate-scrollIndicator"></div>
-          </div>
-        </div>
-      </div>
+  <div className="animate-bounce w-10 h-16 flex flex-col items-center">
+    <span className="text-white/85 text-sm font-semibold mb-2">Scroll</span>
+    <div className="w-6 h-6 flex items-end justify-center">
+      <span className="text-2xl text-[#3B7BAA] font-bold animate-bounce-opposite">﹀</span>
+    </div>
+  </div>
+</div>
     </section>
   );
 }
