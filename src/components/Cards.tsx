@@ -240,14 +240,15 @@ export default function Cards() {
             <div className="about_logo_button_wrapper">
               <div className="about_logo_wrapper notouch">
                 <div className="about_logo">
-                  <Image
+                  {/* <Image
                     src="/images/1.webp"
                     loading="lazy"
                     width={392}
                     height={392}
                     alt="Cascade Space Logo"
                     sizes="(max-width: 479px) 100vw, (max-width: 991px) 392px, 36vw"
-                  />
+                  /> */}
+                  <h1>Your Logo Here</h1>
                 </div>
                 <div className="about_logo_gradient"></div>
               </div>
